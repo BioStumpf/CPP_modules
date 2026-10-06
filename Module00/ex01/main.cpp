@@ -6,14 +6,17 @@
 #include <string>
 
 static bool	prompt(const char *text, std::string &line) {
-	std::cout << text << std::flush;
-	if (!std::getline(std::cin, line))
-		return (false);
-	return (true);
+	while (true) {
+		std::cout << text << std::flush;
+		if (!std::getline(std::cin, line))
+			return (false);
+		if (!line.empty())
+			return (true);
+	}
 }
 
 static bool add_contact(PhoneBook &book) {
-	t_ContactData contact;
+	ContactData contact;
 
 	if (!prompt("First name: ", contact.first_name))
 		return (false);
@@ -36,7 +39,7 @@ static bool search_contact(PhoneBook &book)
 	book.peek();
 	if (!prompt("Select a contact: ", line))
 		return false;
-	if (line.length() != 1 || !std::isdigit(line[0])) {
+	if (line.length() != 1 || !std::isdigit(static_cast<unsigned char>(line[0]))) {
 		std::cout << "Invalid Index." << std::endl;
 		return true;
 	}

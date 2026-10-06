@@ -1,15 +1,15 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 
+//contructors
 PhoneBook::PhoneBook() : _contacts(0), _oldest(0) {}
-
 PhoneBook::~PhoneBook() {}
 
-void PhoneBook::add(t_ContactData const &contact) {
-	if (this->_contacts == MAX) {
+void PhoneBook::add(ContactData const &contact) {
+	if (this->_contacts == MAX_CONTACTS) {
 		this->_phone_book[this->_oldest].fill(contact);
 		this->_oldest++;
-		this->_oldest = (this->_oldest == MAX) ? 0 : this->_oldest;
+		this->_oldest = (this->_oldest == MAX_CONTACTS) ? 0 : this->_oldest;
 	}
 	else {
 		this->_phone_book[this->_contacts].fill(contact);

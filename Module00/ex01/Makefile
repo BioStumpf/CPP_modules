@@ -39,7 +39,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 	@printf "\n"
 
-fclean:
+fclean: clean
 	@printf "$(GREEN)======================================$(RESET)\n"
 	@printf "$(BOLD)$(BLUE)       FCLEANING          $(RESET)\n"
 	@printf "$(GREEN)======================================$(RESET)\n"

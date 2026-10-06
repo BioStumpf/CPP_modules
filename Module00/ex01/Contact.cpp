@@ -3,18 +3,11 @@
 #include <iomanip>
 
 //constructors
-// Contact::Contact(std::string const &first_name, std::string const &last_name,
-		// std::string const &nickname, std::string const &phone_number,
-		// std::string const &darkest_secret)
-		// 	: _first_name(first_name), _last_name(last_name), _nickname(nickname),
-		// 	_phone_number(phone_number), _darkest_secret(darkest_secret) {}
-
 Contact::Contact() {}
-
 Contact::~Contact() {}
 
 //adding a contact
-void Contact::fill(t_ContactData const &data) 
+void Contact::fill(ContactData const &data) 
 {
 	this->_data = data;
 }
@@ -30,10 +23,10 @@ void Contact::display() const
 		<< std::endl;
 }
 
-static std::string truncate(std::string const &str)
+std::string Contact::truncate(std::string const &str)
 {
-	if (str.length() > PAD)
-		return str.substr(0, PAD - 1) + '.';
+	if (str.length() > PADDING)
+		return str.substr(0, PADDING - 1) + '.';
 	return str;
 }
 

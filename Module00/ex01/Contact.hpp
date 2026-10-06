@@ -1,24 +1,20 @@
-#ifndef CONTACT_CPP
-# define CONTACT_CPP
-# define PAD 10
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 #include <string>
 
-typedef struct s_ContactData {
+struct ContactData {
 	std::string first_name;
 	std::string last_name;
 	std::string nickname;
 	std::string phone_number;
 	std::string darkest_secret;
-}				t_ContactData;
+};
 
 class Contact {
 	public:
 		//constructor and destructor
 		Contact();
-		// Contact(std::string const &first_name, std::string const &last_name,
-		// 		std::string const &nickname, std::string const &phone_number,
-		// 		std::string const &darkest_secret);
 		~Contact();
 
 		//print the contact
@@ -26,10 +22,15 @@ class Contact {
 		void display() const;
 
 		//add to a contact
-		void fill(t_ContactData const &data);
+		void fill(ContactData const &data);
 
 	private:
-		t_ContactData _data;
+		//data
+		static const size_t PADDING = 10;
+		ContactData _data;
+
+		//functions
+		static std::string	truncate(std::string const &str);
 };
 
 #endif // !CONTACT_CPP

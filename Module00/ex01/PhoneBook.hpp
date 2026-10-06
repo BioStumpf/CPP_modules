@@ -1,7 +1,5 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
-# define MAX 2
-# define LAST (MAX - 1)
 
 #include "Contact.hpp"
 
@@ -11,16 +9,17 @@ class PhoneBook {
 		~PhoneBook();
 	
 	//add a contact to the phone book
-	void add(t_ContactData const &contact);
+	void add(ContactData const &contact);
 
 	//display the entire phonebook
 	void peek() const;
 	void display(size_t idx) const;
 
 	private:
+		static const size_t	MAX_CONTACTS = 8;
 		size_t _contacts;
 		size_t _oldest;
-		Contact _phone_book[MAX];
+		Contact _phone_book[MAX_CONTACTS];
 };
 
 #endif // !PHONEBOOK_HPP
