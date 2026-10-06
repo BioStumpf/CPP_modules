@@ -1,6 +1,6 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
-# define MAX 8
+# define MAX 2
 # define LAST (MAX - 1)
 
 #include "Contact.hpp"
@@ -19,6 +19,7 @@ class PhoneBook {
 
 	private:
 		size_t _contacts;
+		size_t _oldest;
 		Contact _phone_book[MAX];
 };
 

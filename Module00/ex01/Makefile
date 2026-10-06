@@ -13,7 +13,7 @@ DEPS := $(patsubst %.cpp, $(DEP_DIR)%.d, $(SRCS))
 NAME := phonebook
 CC := c++
 CFLAGS_SRC := -Wall -Wextra -Werror -std=c++98
-CFLAGS_OBJ := $(CFLAGS_SRC) -MMD -MP -MF $(DEP_DIR)$*.d
+CFLAGS_OBJ = $(CFLAGS_SRC) -MMD -MP -MF $(DEP_DIR)$*.d
 
 all: $(NAME)
 
@@ -35,6 +35,8 @@ clean:
 	@printf "$(GREEN)======================================$(RESET)\n"
 	@printf "$(BOLD)$(BLUE)       CLEANING          $(RESET)\n"
 	@printf "$(GREEN)======================================$(RESET)\n"
+	rm -rf $(DEP_DIR)
+	rm -rf $(OBJ_DIR)
 	@printf "\n"
 
 fclean:
