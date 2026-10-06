@@ -1,11 +1,12 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
+#include <cctype>
 #include <iostream>
 #include <string>
 
 static bool	prompt(const char *text, std::string &line) {
-	std::cout << text << std::endl;
+	std::cout << text << std::flush;
 	if (!std::getline(std::cin, line))
 		return (false);
 	return (true);
@@ -28,21 +29,38 @@ static bool add_contact(PhoneBook &book) {
 	return (true);
 }
 
+static bool search_contact(PhoneBook &book)
+{
+	std::string line;
+
+	book.peek();
+	if (!prompt("Select a contact: ", line))
+		return false;
+	if (line.length() != 1 || !std::isdigit(line[0])) {
+		std::cout << "Invalid Index." << std::endl;
+		return true;
+	}
+	book.display(line[0] - '0');
+	return true;
+}
+
 int main(void) {
 	PhoneBook book;
 	std::string line;
 
 	while (true) {
-		if (!prompt("Enter a command (ADD; SEARCH; EXIT)", line))
+		if (!prompt("Enter a command (ADD; SEARCH; EXIT): ", line))
 			break ;
 		else if (line == "EXIT")
 			break ;
-		else if (line == "ADD")
+		else if (line == "ADD") {
 			if (!add_contact(book))
 				break ;
-		book.show();
-		// else if (line == "SEARCH")
-		// 	search_contact(book);
+		}
+		else if (line == "SEARCH") {
+			if (!search_contact(book))
+				break ;
+		}
 	}
 	return 0;
 }

@@ -1,5 +1,6 @@
 #ifndef CONTACT_CPP
 # define CONTACT_CPP
+# define PAD 10
 
 #include <string>
 
@@ -21,7 +22,8 @@ class Contact {
 		~Contact();
 
 		//print the contact
-		void display(size_t idx) const;
+		void peek(size_t idx) const;
+		void display() const;
 
 		//add to a contact
 		void fill(t_ContactData const &data);

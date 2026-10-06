@@ -1,17 +1,29 @@
 #include "PhoneBook.hpp"
+#include <iostream>
 
 PhoneBook::PhoneBook() : _contacts(0) {}
 
 PhoneBook::~PhoneBook() {}
 
 void PhoneBook::add(t_ContactData const &contact) {
-	this->_phone_book[this->_contacts].fill(contact);
-	if (this->_contacts < LAST)
+	if (this->_contacts == MAX)
+		this->_phone_book[LAST].fill(contact);
+	else {
+		this->_phone_book[this->_contacts].fill(contact);
 		this->_contacts++;
+	}
 }
 
-void PhoneBook::show() const {
+void PhoneBook::peek() const {
 	for (size_t i = 0; i < _contacts; ++i) {
-		_phone_book[i].display(i);
+		_phone_book[i].peek(i);
 	}
+}
+
+void PhoneBook::display(size_t idx) const {
+	if (idx >= this->_contacts) {
+		std::cout << "Invalid Index." << std::endl;
+		return ;
+	}
+	this->_phone_book[idx].display();
 }
