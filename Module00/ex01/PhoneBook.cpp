@@ -5,16 +5,33 @@
 PhoneBook::PhoneBook() : _contacts(0), _oldest(0) {}
 PhoneBook::~PhoneBook() {}
 
-void PhoneBook::add(ContactData const &contact) {
-	if (this->_contacts == MAX_CONTACTS) {
-		this->_phone_book[this->_oldest].fill(contact);
-		this->_oldest++;
-		this->_oldest = (this->_oldest == MAX_CONTACTS) ? 0 : this->_oldest;
+bool prompt(const char *text, std::string &line) {
+	while (true) {
+		std::cout << text << std::flush;
+		if (!std::getline(std::cin, line))
+			return (false);
+		if (!line.empty())
+			return (true);
 	}
-	else {
-		this->_phone_book[this->_contacts].fill(contact);
-		this->_contacts++;
-	}
+}
+
+bool PhoneBook::add() {
+	ContactData contact;
+
+	if (!prompt("First name: ", contact.first_name))
+		return (false);
+	else if (!prompt("Last name: ", contact.last_name))
+		return (false);
+	else if (!prompt("Nickname: ", contact.nickname))
+		return (false);
+	else if (!prompt("Phone number: ", contact.phone_number))
+		return (false);
+	else if (!prompt("Darkest secret: ", contact.darkest_secret))
+		return (false);
+	_phone_book[_oldest].fill(contact);
+	_oldest = (_oldest == MAX_CONTACTS) ? 0 : _oldest + 1;
+	_contacts = (_contacts == MAX_CONTACTS) ? MAX_CONTACTS : _contacts + 1;
+	return (true);
 }
 
 void PhoneBook::peek() const {
@@ -23,10 +40,19 @@ void PhoneBook::peek() const {
 	}
 }
 
-void PhoneBook::display(size_t idx) const {
-	if (idx >= this->_contacts) {
+bool PhoneBook::search()
+{
+	std::string line;
+
+	peek();
+	if (!prompt("Select a contact: ", line))
+		return false;
+	if (line.length() != 1
+		|| !std::isdigit(static_cast<unsigned char>(line[0]))
+		|| line[0] - '0' >= _contacts) {
 		std::cout << "Invalid Index." << std::endl;
-		return ;
+		return true;
 	}
-	this->_phone_book[idx].display();
+	_phone_book[line[0] - '0'].display();
+	return true;
 }

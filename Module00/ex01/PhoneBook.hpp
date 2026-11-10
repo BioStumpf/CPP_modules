@@ -8,18 +8,24 @@ class PhoneBook {
 		PhoneBook();
 		~PhoneBook();
 	
-	//add a contact to the phone book
-	void add(ContactData const &contact);
+		//add a contact to the phone book
+		bool add();
+	
+		//add a contact to the phone book
+		bool search();
 
-	//display the entire phonebook
-	void peek() const;
-	void display(size_t idx) const;
+		//static function to prompt for phone book related input
+		static bool prompt(const char *text, std::string &line);
 
 	private:
 		static const size_t	MAX_CONTACTS = 8;
 		size_t _contacts;
 		size_t _oldest;
 		Contact _phone_book[MAX_CONTACTS];
+
+		//peek each element of the phonebook
+		void peek() const;
+
 };
 
 #endif // !PHONEBOOK_HPP
