@@ -5,7 +5,7 @@
 PhoneBook::PhoneBook() : _contacts(0), _oldest(0) {}
 PhoneBook::~PhoneBook() {}
 
-bool prompt(const char *text, std::string &line) {
+bool PhoneBook::prompt(const char *text, std::string &line) {
 	while (true) {
 		std::cout << text << std::flush;
 		if (!std::getline(std::cin, line))
@@ -40,8 +40,7 @@ void PhoneBook::peek() const {
 	}
 }
 
-bool PhoneBook::search()
-{
+bool PhoneBook::search() {
 	std::string line;
 
 	peek();
@@ -49,7 +48,7 @@ bool PhoneBook::search()
 		return false;
 	if (line.length() != 1
 		|| !std::isdigit(static_cast<unsigned char>(line[0]))
-		|| line[0] - '0' >= _contacts) {
+		|| (line[0] - '0') >= static_cast<int>(_contacts)) {
 		std::cout << "Invalid Index." << std::endl;
 		return true;
 	}
