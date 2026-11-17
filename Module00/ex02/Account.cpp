@@ -43,7 +43,6 @@ Account::~Account( void )
 		<< "closed" <<std::endl;
 };
 
-
 //class member functions
 int	Account::getNbAccounts( void ) {
 	return _nbAccounts;
