@@ -28,9 +28,10 @@ bool PhoneBook::add() {
 		return (false);
 	else if (!prompt("Darkest secret: ", contact.darkest_secret))
 		return (false);
+	std::cout << "oldest: " << _oldest << std::endl;
 	_phone_book[_oldest].fill(contact);
-	_oldest = (_oldest == MAX_CONTACTS) ? 0 : _oldest + 1;
-	_contacts = (_contacts == MAX_CONTACTS) ? MAX_CONTACTS : _contacts + 1;
+	if (++_oldest == MAX_CONTACTS) _oldest = 0;
+	if (_contacts < MAX_CONTACTS) _contacts++;
 	return (true);
 }
 
