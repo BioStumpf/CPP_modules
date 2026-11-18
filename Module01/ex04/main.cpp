@@ -1,5 +1,5 @@
 #include <fstream>
-#include "line.hpp"
+#include "file.hpp"
 
 int main(int ac, char **av) {
 
@@ -10,12 +10,12 @@ int main(int ac, char **av) {
 	//init input and outputfile, also line buffer
 	std::ofstream outfile("outfile");
 	std::ifstream infile(av[1]);
-	Line line;
+	File file;
 
-	//iterate through infile and replace str1 with str2
-	while (line.read(infile)) {
-		line.replace(av[2], av[3]);
-	}
+	//read entire file
+	file.read(infile);
+	file.replace(av[2], av[3]);
+	outfile << file.get();
 
 	//close files
 	infile.close();

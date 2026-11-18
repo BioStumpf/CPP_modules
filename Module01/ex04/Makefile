@@ -6,7 +6,7 @@ BLUE   = \033[34m
 
 DEP_DIR := dep/
 OBJ_DIR := obj/
-SRCS := main.cpp line.cpp
+SRCS := main.cpp file.cpp
 OBJS := $(patsubst %.cpp, $(OBJ_DIR)%.o, $(SRCS))
 DEPS := $(patsubst %.cpp, $(DEP_DIR)%.d, $(SRCS)) 
 
