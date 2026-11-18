@@ -1,17 +1,18 @@
 #include "file.hpp"
-#include <fstream> 
 
 File::File() {}
 File::~File() {}
 
 std::string const &File::get() const {
-	return _line;
+	return _buf;
 }
 
-bool File::read(std::ifstream &file) {
-	if (std::getline(file, _line))
-		return true;
-	return false;
+void File::read(std::ifstream &file) {
+	char c;
+
+	while (file.get(c)) {
+		_buf += c;
+	}
 }
 
 void File::replace(const std::string &old_s, const std::string &new_s) {

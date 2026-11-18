@@ -9,12 +9,12 @@ class File {
 		File();
 		~File();
 
-		bool read(std::ifstream &file);
+		void read(std::ifstream &file);
 		void replace(const std::string &old_s, const std::string &new_s);
 		std::string const &get() const;
 	
 	private:
-		std::string _line;
+		std::string _buf;
 	
 };
 
