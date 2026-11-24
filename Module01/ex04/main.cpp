@@ -7,14 +7,19 @@ int main(int ac, char **av) {
 	if (ac != 4)
 		return 1;
 
+	//create vars
+	char *filename = av[1];
+	char *old_s = av[2];
+	char *new_s = av[3];
+
 	//init input and outputfile, also line buffer
 	std::ofstream outfile("outfile");
-	std::ifstream infile(av[1]);
+	std::ifstream infile(filename);
 	File file;
 
 	//read entire file
 	file.read(infile);
-	file.replace(av[2], av[3]);
+	file.replace(old_s, new_s);
 	outfile << file.get();
 
 	//close files
