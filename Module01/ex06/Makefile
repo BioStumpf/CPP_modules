@@ -6,11 +6,11 @@ BLUE   = \033[34m
 
 DEP_DIR := dep/
 OBJ_DIR := obj/
-SRCS := Zombie.cpp main.cpp randomChump.cpp newZombie.cpp
+SRCS := main.cpp Harl.cpp
 OBJS := $(patsubst %.cpp, $(OBJ_DIR)%.o, $(SRCS))
 DEPS := $(patsubst %.cpp, $(DEP_DIR)%.d, $(SRCS)) 
 
-NAME := zombie
+NAME := harlFilter
 CC := c++
 CFLAGS_SRC := -Wall -Wextra -Werror -std=c++98
 CFLAGS_OBJ = $(CFLAGS_SRC) -MMD -MP -MF $(DEP_DIR)$*.d
