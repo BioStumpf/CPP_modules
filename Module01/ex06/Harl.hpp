@@ -1,3 +1,6 @@
+#ifndef HARL
+#define HARL
+
 #include <string>
 
 class Harl;
@@ -28,3 +31,5 @@ class Harl {
 		void warning( void );
 		void error( void );
 };
+
+#endif
