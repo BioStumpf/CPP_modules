@@ -1,6 +1,7 @@
 #include "Fixed.hpp"
 #include <iostream>
 
+const int Fixed::_fraction = 8;
 //constructors + copy assignment
 Fixed::Fixed() : _value(0) {
 	std::cout << "Default constructor called" << std::endl;
