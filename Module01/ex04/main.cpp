@@ -8,13 +8,14 @@ int main(int ac, char **av) {
 		return 1;
 
 	//create vars
-	char *filename = av[1];
+	std::string filename = av[1];
+	std::string outfile_name = filename + ".replace";
 	char *old_s = av[2];
 	char *new_s = av[3];
 
 	//init input and outputfile, also line buffer
-	std::ofstream outfile("outfile");
-	std::ifstream infile(filename);
+	std::ofstream outfile(outfile_name.c_str());
+	std::ifstream infile(filename.c_str());
 	File file;
 
 	//read entire file
